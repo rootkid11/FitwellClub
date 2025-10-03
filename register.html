@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Register - Fitness Club</title>
+    <link rel="stylesheet" href="css/style.css" />
+    <link rel="stylesheet" href="css/animate.css" />
+    <style>
+      body {
+        background: url("images/home.jpg") no-repeat center center/cover;
+        font-family: Arial, sans-serif;
+      }
+      .register-section {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        min-height: 100vh;
+        background: rgba(0, 0, 0, 0.7);
+      }
+      .register-box {
+        background: rgba(0, 0, 0, 0.8);
+        padding: 40px;
+        border-radius: 15px;
+        box-shadow: 0 8px 25px rgba(0, 0, 0, 0.6);
+        max-width: 450px;
+        width: 100%;
+        color: #fff;
+        animation: fadeInUp 1s ease;
+      }
+      .register-box h2 {
+        text-align: center;
+        margin-bottom: 20px;
+        color: #e74c3c;
+        font-size: 28px;
+      }
+      .register-box input {
+        width: 100%;
+        padding: 12px 15px;
+        margin: 10px 0;
+        border: 1px solid #444;
+        border-radius: 8px;
+        background: rgba(255, 255, 255, 0.1);
+        color: #fff;
+        font-size: 16px;
+        outline: none;
+        transition: 0.3s;
+      }
+      .register-box input:focus {
+        border-color: #e74c3c;
+        background: rgba(255, 255, 255, 0.2);
+      }
+      .register-box button {
+        width: 100%;
+        padding: 14px;
+        background: #e74c3c;
+        border: none;
+        border-radius: 8px;
+        color: #fff;
+        font-size: 18px;
+        cursor: pointer;
+        transition: 0.3s;
+        margin-top: 15px;
+      }
+      .register-box button:hover {
+        background: #c0392b;
+      }
+
+      /* Redirect Home button styling */
+      .redirect-home {
+        margin-top: 18px;
+        text-align: center;
+        color: var(--muted);
+        font-size: 14px;
+      }
+      .redirect-home .btn-home {
+        display: inline-block;
+        margin-top: 8px;
+        padding: 10px 18px;
+        background: var(--accent);
+        color: #fff !important;
+        border-radius: 12px;
+        text-decoration: none;
+        font-weight: 600;
+        transition: filter 0.2s ease, transform 0.08s ease;
+      }
+      .redirect-home .btn-home:hover {
+        filter: brightness(1.1);
+      }
+      .redirect-home .btn-home:active {
+        transform: translateY(1px);
+      }
+    </style>
+  </head>
+  <body>
+    <div class="register-section">
+      <div class="register-box">
+        <h2>Register Now</h2>
+        <form id="registerForm">
+          <input type="text" id="name" placeholder="Enter Name" required />
+          <input type="email" id="email" placeholder="Enter Email" required />
+          <input type="text" id="mobile" placeholder="Enter Mobile" required />
+          <input type="number" id="age" placeholder="Enter Age" required />
+          <input
+            type="number"
+            id="height"
+            placeholder="Enter Height (cm)"
+            required
+          />
+          <input
+            type="number"
+            id="weight"
+            placeholder="Enter Body Weight (kg)"
+            required
+          />
+          <input
+            type="password"
+            id="password"
+            placeholder="Enter Password"
+            required
+          />
+          <button type="submit">Register</button>
+        </form>
+        <div class="redirect-home">
+          <p>Want to go back?</p>
+          <a href="index.html" class="btn-home">🏠 Back to Home</a>
+        </div>
+      </div>
+    </div>
+
+    <script>
+      document
+        .getElementById("registerForm")
+        .addEventListener("submit", function (e) {
+          e.preventDefault();
+
+          let name = document.getElementById("name").value.trim();
+          let email = document.getElementById("email").value.trim();
+          let mobile = document.getElementById("mobile").value.trim();
+          let age = parseInt(document.getElementById("age").value);
+          let height = parseFloat(document.getElementById("height").value);
+          let weight = parseFloat(document.getElementById("weight").value);
+          let password = document.getElementById("password").value;
+
+          // Name validation
+          if (!/^[a-zA-Z\s]+$/.test(name)) {
+            alert("Name must contain only letters!");
+            return;
+          }
+
+          // Email validation
+          let emailPattern = /^[^ ]+@[^ ]+\.[a-z]{2,3}$/;
+          if (!emailPattern.test(email)) {
+            alert("Please enter a valid email address!");
+            return;
+          }
+
+          // Mobile validation (10 digits)
+          if (!/^[0-9]{10}$/.test(mobile)) {
+            alert("Mobile number must be 10 digits!");
+            return;
+          }
+
+          // Age validation
+          if (isNaN(age) || age < 12 || age > 100) {
+            alert("Age must be between 12 and 100!");
+            return;
+          }
+
+          // Height validation
+          if (isNaN(height) || height <= 0) {
+            alert("Please enter a valid height!");
+            return;
+          }
+
+          // Weight validation
+          if (isNaN(weight) || weight <= 0) {
+            alert("Please enter a valid weight!");
+            return;
+          }
+
+          // Password validation (min 6 characters)
+          if (password.length < 6) {
+            alert("Password must be at least 6 characters!");
+            return;
+          }
+
+          alert("✅ Registration Successful!");
+          this.reset();
+        });
+    </script>
+  </body>
+</html>

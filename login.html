@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Login | FitWell Gym</title>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: "Poppins", sans-serif;
+      }
+
+      body {
+        background: url("images/home.jpg") no-repeat center center/cover;
+        height: 100vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+
+      .login-container {
+        width: 100%;
+        max-width: 420px;
+        background: rgba(0, 0, 0, 0.7);
+        padding: 40px 30px;
+        border-radius: 12px;
+        box-shadow: 0 8px 32px rgba(0, 0, 0, 0.5);
+        backdrop-filter: blur(10px);
+        color: #fff;
+        text-align: center;
+      }
+
+      .login-container h2 {
+        margin-bottom: 20px;
+        color: #facc15;
+        font-size: 26px;
+        font-weight: bold;
+      }
+
+      .input-group {
+        text-align: left;
+        margin-bottom: 20px;
+      }
+
+      .input-group label {
+        font-size: 14px;
+        margin-bottom: 6px;
+        display: block;
+        color: #ddd;
+      }
+
+      .input-group input {
+        width: 100%;
+        padding: 12px;
+        border: none;
+        border-radius: 8px;
+        font-size: 14px;
+        background: rgba(255, 255, 255, 0.1);
+        color: #fff;
+        outline: none;
+      }
+
+      .input-group input::placeholder {
+        color: #bbb;
+      }
+
+      .btn-login {
+        width: 100%;
+        padding: 12px;
+        background: #facc15;
+        border: none;
+        border-radius: 8px;
+        font-size: 16px;
+        font-weight: bold;
+        color: #000;
+        cursor: pointer;
+        transition: 0.3s;
+      }
+
+      .btn-login:hover {
+        background: #eab308;
+      }
+
+      .register-link {
+        margin-top: 20px;
+        font-size: 14px;
+        color: #ddd;
+      }
+
+      .register-link a {
+        color: #facc15;
+        text-decoration: none;
+        font-weight: bold;
+      }
+
+      .register-link a:hover {
+        text-decoration: underline;
+      }
+
+      /* Redirect Home button styling */
+      .redirect-home {
+        margin-top: 18px;
+        text-align: center;
+        color: var(--muted);
+        font-size: 14px;
+      }
+      .redirect-home .btn-home {
+        display: inline-block;
+        margin-top: 8px;
+        padding: 10px 18px;
+        background: var(--accent);
+        color: #fff !important;
+        border-radius: 12px;
+        text-decoration: none;
+        font-weight: 600;
+        transition: filter 0.2s ease, transform 0.08s ease;
+      }
+      .redirect-home .btn-home:hover {
+        filter: brightness(1.1);
+      }
+      .redirect-home .btn-home:active {
+        transform: translateY(1px);
+      }
+    </style>
+  </head>
+  <body>
+    <div class="login-container">
+      <h2>Member Login</h2>
+      <form id="loginForm">
+        <div class="input-group">
+          <label>Email Address</label>
+          <input
+            type="email"
+            id="email"
+            placeholder="Enter your email"
+            required
+          />
+        </div>
+        <div class="input-group">
+          <label>Password</label>
+          <input
+            type="password"
+            id="password"
+            placeholder="Enter your password"
+            required
+          />
+        </div>
+        <button type="submit" class="btn-login">Login</button>
+        <p class="register-link">
+          Don’t have an account? <a href="register.html">Register Now</a>
+        </p>
+      </form>
+      <div class="redirect-home">
+        <p>Want to go back?</p>
+        <a href="index.html" class="btn-home">🏠 Back to Home</a>
+      </div>
+    </div>
+
+    <script>
+      document
+        .getElementById("loginForm")
+        .addEventListener("submit", function (e) {
+          e.preventDefault();
+
+          let email = document.getElementById("email").value.trim();
+          let password = document.getElementById("password").value;
+
+          // Email validation
+          let emailPattern = /^[^ ]+@[^ ]+\.[a-z]{2,3}$/;
+          if (!emailPattern.test(email)) {
+            alert("❌ Please enter a valid email address!");
+            return;
+          }
+
+          // Password validation
+          if (password.length < 6) {
+            alert("❌ Password must be at least 6 characters!");
+            return;
+          }
+
+          alert("✅ Login Successful!");
+          this.reset();
+        });
+    </script>
+  </body>
+</html>
